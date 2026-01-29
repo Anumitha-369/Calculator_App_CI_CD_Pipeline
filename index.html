@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Maths background using SVG pattern */
+    body {
+      background-color: #f5f7fb;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ctext x='10' y='30' font-size='20' fill='%23d1d5db'%3E+ − × ÷%3C/text%3E%3Ctext x='40' y='70' font-size='18' fill='%23e5e7eb'%3E123%3C/text%3E%3Ctext x='15' y='100' font-size='16' fill='%23e5e7eb'%3Eπ √%3C/text%3E%3C/svg%3E");
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center">
+
+  <!-- Calculator Card -->
+  <div class="w-80 p-6 rounded-3xl shadow-2xl 
+              bg-gradient-to-b from-purple-400 to-pink-400">
+
+    <!-- Top Section -->
+    <div class="rounded-2xl p-4 mb-6 
+                bg-gradient-to-r from-pink-300 to-indigo-300">
+
+      <h1 class="text-2xl font-bold text-center text-gray-800 mb-3">
+        Calculator
+      </h1>
+
+      <!-- WHITE DISPLAY (fixed as requested) -->
+      <input
+        id="display"
+        type="text"
+        disabled
+        class="w-full p-4 text-right text-2xl font-semibold
+               rounded-xl bg-white text-gray-800 shadow-inner outline-none"
+      />
+    </div>
+
+    <!-- Buttons -->
+    <div class="grid grid-cols-4 gap-4 text-center font-medium">
+
+      <button onclick="clearDisplay()" class="bg-red-500 text-white rounded-xl p-3">C</button>
+      <button onclick="appendValue('/')" class="text-lg">÷</button>
+      <button onclick="appendValue('*')" class="text-lg">×</button>
+      <button onclick="appendValue('-')" class="text-lg">−</button>
+
+      <button onclick="appendValue('7')">7</button>
+      <button onclick="appendValue('8')">8</button>
+      <button onclick="appendValue('9')">9</button>
+      <button onclick="appendValue('+')" class="text-lg">+</button>
+
+      <button onclick="appendValue('4')">4</button>
+      <button onclick="appendValue('5')">5</button>
+      <button onclick="appendValue('6')">6</button>
+      <div></div>
+
+      <button onclick="appendValue('1')">1</button>
+      <button onclick="appendValue('2')">2</button>
+      <button onclick="appendValue('3')">3</button>
+      <div></div>
+
+      <button onclick="appendValue('0')" class="col-span-2">0</button>
+      <button onclick="appendValue('.')">.</button>
+      <button onclick="calculate()" 
+              class="bg-green-500 text-white rounded-xl p-3">
+        =
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const display = document.getElementById("display");
+
+    function appendValue(val) {
+      display.value += val;
+    }
+
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    function calculate() {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = "Error";
+      }
+    }
+  </script>
+
+</body>
+</html>
